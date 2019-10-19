@@ -12,12 +12,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
-
     EditText username, email, password;
     Button  btn_register;
     FirebaseAuth auth;
+    DatabaseReference reference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +49,16 @@ public class RegisterActivity extends AppCompatActivity {
         auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    FirebaseUser firebaseUser = auth.getCurrentUser();
+                    String userid = firebaseUser.getUid();
 
+                    reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+
+                    HashMap<String, String> hashMap = new HashMap<>();
+
+
+                }
             }
         });
     }

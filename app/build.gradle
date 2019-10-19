@@ -27,7 +27,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-database:19.1.0'
     implementation 'com.google.firebase:firebase-auth:19.1.0'
-//    implementdtion 'com.google.firebase:firebase-core:17.2.0' WTF IS THIS
+    implementation 'com.google.firebase:firebase-core:17.2.0'
 
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
