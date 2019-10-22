@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class StartActivity extends AppCompatActivity {
 
-    Button login, resigter;
+    Button login, register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,19 +17,23 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         login = findViewById(R.id.Login);
-        resigter = findViewById(R.id.Register);
+        register = findViewById(R.id.Register);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StartActivity.this,LoginActivity.class));
+//                startActivity(new Intent(StartActivity.this,LoginActivity.class));
+                Intent intent = new Intent(StartActivity.this,LoginActivity.class);
+                startActivity(intent);
             }
         });
 
-        resigter.setOnClickListener(new View.OnClickListener() {
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StartActivity.this,RegisterActivity.class));
+//                startActivity(new Intent(StartActivity.this,RegisterActivity.class));
+                Intent intent = new Intent(StartActivity.this,RegisterActivity.class);
+                startActivity(intent);
             }
         });
 

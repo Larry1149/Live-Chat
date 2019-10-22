@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,10 +31,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Register");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setTitle("Register");
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         username = findViewById(R.id.username);
         email = findViewById(R.id.email);
@@ -53,12 +52,12 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(txt_username) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_passwaord)) {
                     Toast.makeText(RegisterActivity.this,"All fields are required",Toast.LENGTH_SHORT).show();
-                }else if (txt_passwaord.length()<=6 ){
+                }else if (txt_passwaord.length()<6 ){
                     Toast.makeText(RegisterActivity.this, "Password must more then 6 character", Toast.LENGTH_SHORT).show();
-                }else if (!txt_passwaord.contains("[a-zA-Z]+") ){
-                    Toast.makeText(RegisterActivity.this, "Password must include Alphabet", Toast.LENGTH_SHORT).show();
-                }else if (txt_passwaord.matches("[0-9]+")){
-                    Toast.makeText(RegisterActivity.this, "Password must include Number", Toast.LENGTH_SHORT).show();
+//                }else if (!txt_passwaord.contains("[a-zA-Z]+") ){
+//                    Toast.makeText(RegisterActivity.this, "Password must include Alphabet", Toast.LENGTH_SHORT).show();
+//                }else if (txt_passwaord.matches("[0-9]+")){
+//                    Toast.makeText(RegisterActivity.this, "Password must include Number", Toast.LENGTH_SHORT).show();
                 }else {
                     register(txt_username,txt_email,txt_passwaord);
                 }
