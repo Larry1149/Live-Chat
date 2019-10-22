@@ -1,17 +1,38 @@
 package com.example.livechat;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class StartActivity extends AppCompatActivity {
 
+    Button login, resigter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        Toast.makeText(StartActivity.this, "Firebase connection Success", Toast.LENGTH_SHORT).show();
+
+        login = findViewById(R.id.Login);
+        resigter = findViewById(R.id.Register);
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartActivity.this,LoginActivity.class));
+            }
+        });
+
+        resigter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StartActivity.this,RegisterActivity.class));
+            }
+        });
+
         
     }
 }
