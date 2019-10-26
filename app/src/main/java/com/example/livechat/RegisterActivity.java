@@ -10,8 +10,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,10 +33,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setTitle("Register");
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Register");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         username = findViewById(R.id.username);
         email = findViewById(R.id.email);
@@ -48,18 +50,18 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String txt_username= username.getText().toString();
                 String txt_email= email.getText().toString();
-                String txt_passwaord= password.getText().toString();
+                String txt_password= password.getText().toString();
 
-                if (TextUtils.isEmpty(txt_username) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_passwaord)) {
+                if (TextUtils.isEmpty(txt_username) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)) {
                     Toast.makeText(RegisterActivity.this,"All fields are required",Toast.LENGTH_SHORT).show();
-                }else if (txt_passwaord.length()<6 ){
+                }else if (txt_password.length() < 6 ){
                     Toast.makeText(RegisterActivity.this, "Password must more then 6 character", Toast.LENGTH_SHORT).show();
 //                }else if (!txt_passwaord.contains("[a-zA-Z]+") ){
 //                    Toast.makeText(RegisterActivity.this, "Password must include Alphabet", Toast.LENGTH_SHORT).show();
 //                }else if (txt_passwaord.matches("[0-9]+")){
 //                    Toast.makeText(RegisterActivity.this, "Password must include Number", Toast.LENGTH_SHORT).show();
                 }else {
-                    register(txt_username,txt_email,txt_passwaord);
+                    register(txt_username,txt_email,txt_password);
                 }
             }
         });
@@ -75,6 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
                     String userid = firebaseUser.getUid();
 
                     reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+
 
                     HashMap<String, String> hashMap = new HashMap<>();
                     hashMap.put("id",userid);
@@ -95,6 +98,11 @@ public class RegisterActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(RegisterActivity.this,"You can't register woth this email or password",Toast.LENGTH_SHORT).show();
                 }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                e.printStackTrace();
             }
         });
     }
